@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.Calc {
+    max-width: 60vw;
+    width: 60vw;
+    height: 80vw;
+    background: #545150;
+    color: white;
+    display: grid;
+    grid-template-areas: 
+    "result result result result"
+    "reset opposite percentages divide"
+    "7 8 9 multiply"
+    "4 5 6 substraction"
+    "1 2 3 addition"
+    "0 0 comma isequal"
+    ;
+}
+
+.Calc__result {
+    grid-area: result;
+}
+.Calc__0 {
+    grid-area: "0";
+}
