@@ -85,6 +85,7 @@ function signClicked(sign) {
         case 'AC':
             result_inner.innerHTML = '0';
             isNumberNew = true;
+            changeOperatorBorder();
         break;
 
         // COMMA
@@ -95,6 +96,7 @@ function signClicked(sign) {
 
 // Number and comma clicked
 function numberAndCommaClicked(number) {
+    changeOperatorBorder();
     if(number === ',') {
         // Read how much commas is in result
         if(commaLimitCheck(result_inner.innerHTML) === true) {
@@ -108,7 +110,7 @@ function numberAndCommaClicked(number) {
         } else {
             // Check if there is comma
             writeClickedNumber(number);
-            
+           
         }
     }
 }
@@ -145,10 +147,10 @@ function changeOperatorBorder(operator) {
             divide.style.cssText = "border: 2px solid #666464";
         break;
         default:
-            x.style.cssText = "";
-            plus.style.cssText = "";
-            minus.style.cssText = "";
-            divide.style.cssText = "";
+            x.style.cssText = "border: 2px solid #666464";
+            plus.style.cssText = "border: 2px solid #666464";
+            minus.style.cssText = "border: 2px solid #666464";
+            divide.style.cssText = "border: 2px solid #666464";
         break;
     }
 }

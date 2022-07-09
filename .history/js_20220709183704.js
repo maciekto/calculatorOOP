@@ -34,7 +34,6 @@ var cashed_number;
 var operator = '';
 var expression = [];
 var isNumberNew = true;
-var isOperatorClicked = false;
 
 
 var signEvents = [x,plus, minus, divide, isEqual, AC];
@@ -52,34 +51,27 @@ function signClicked(sign) {
         // MULTIPLY
         case 'x':
             casheNumber('*');
-            changeOperatorBorder('*');
         break;
 
         //ADD
         case '+':
             casheNumber('+');
-            changeOperatorBorder('+');
         break;
 
         //SUBSTRACT
         case '-':
             casheNumber('-');
-            changeOperatorBorder('-');
         break;
 
         //DIVIDE
         case '/':
             casheNumber('/');
-            changeOperatorBorder('/');
         break;
 
         // RESULT
         case '=':
             result_inner.innerHTML = count();
-            isNumberNew = true;
-            expression = []
             resizeResult();
-            changeOperatorBorder();
         break;
 
         case 'AC':
@@ -116,46 +108,36 @@ function numberAndCommaClicked(number) {
 
 
 function count() {
+    let newNumber;
     const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
     expression.push(transformedNumber);
+    let endResult;
     console.log(expression)
-    expressionToString();
-
-    // Using mathjs library from https://mathjs.org/
-    const result = math.evaluate(expressionToString())
-
-    
-
-    return commaAndDotSwitcher('toCOMMA',result.toString());
-    
+    console.log(transformedNumber)
+    // switch(operator) {
+    //     case '*':
+    //         endResult = cashed_number*newNumber
+    //         return commaAndDotSwitcher('toCOMMA',endResult.toString());
+    //     break;
+    //     case '+':
+    //         endResult = cashed_number+newNumber
+    //         return commaAndDotSwitcher('toCOMMA',endResult.toString());
+    //     break;
+    //     case '-':
+    //         endResult = cashed_number-newNumber
+    //         return commaAndDotSwitcher('toCOMMA',endResult.toString());
+    //     break;
+    //     case '/':
+    //         endResult = cashed_number/newNumber
+    //         return commaAndDotSwitcher('toCOMMA',endResult.toString());
+    //     break;
+    // }
 }
 
-function changeOperatorBorder(operator) {
-    switch(operator) {
-        case '*':
-            x.style.cssText = "border: 2px solid #666464";
-        break;
-        case '+':
-            plus.style.cssText = "border: 2px solid #666464";
-        break;
-        case '-':
-            minus.style.cssText = "border: 2px solid #666464";
-        break;
-        case '/':
-            divide.style.cssText = "border: 2px solid #666464";
-        break;
-        default:
-            x.style.cssText = "";
-            plus.style.cssText = "";
-            minus.style.cssText = "";
-            divide.style.cssText = "";
-        break;
-    }
-}
 
 function expressionToString() {
     const stringExpression = expression.join(' ');
-    return stringExpression;
+    console.log(stringExpression)
 }
 
 
@@ -241,3 +223,78 @@ function resizeResult() {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// inputy liczb
+// inputy orange
+// input procent
+// input odwrotność
+// input reset
+
+// 1. po klinięciu liczba jest zapisywana jako aktywna, jeżeli jest dodana następna liczba jest dodawana do pierwszej w stringu
+
+// 2. Po kliniuęciu jakiegoś przycisku z orange jest dodawana flaga co będzie z tą liczbą robione
+
+// 3. Wprowadzenie następnej liczby
+
+// 4. Wynik
+
+
+// 5. Resetowanie liczby jako resetowanie zmiennej przechowującej wyrażenie

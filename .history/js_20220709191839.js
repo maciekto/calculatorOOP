@@ -58,19 +58,16 @@ function signClicked(sign) {
         //ADD
         case '+':
             casheNumber('+');
-            changeOperatorBorder('+');
         break;
 
         //SUBSTRACT
         case '-':
             casheNumber('-');
-            changeOperatorBorder('-');
         break;
 
         //DIVIDE
         case '/':
             casheNumber('/');
-            changeOperatorBorder('/');
         break;
 
         // RESULT
@@ -79,7 +76,6 @@ function signClicked(sign) {
             isNumberNew = true;
             expression = []
             resizeResult();
-            changeOperatorBorder();
         break;
 
         case 'AC':
@@ -133,22 +129,8 @@ function count() {
 function changeOperatorBorder(operator) {
     switch(operator) {
         case '*':
-            x.style.cssText = "border: 2px solid #666464";
-        break;
-        case '+':
-            plus.style.cssText = "border: 2px solid #666464";
-        break;
-        case '-':
-            minus.style.cssText = "border: 2px solid #666464";
-        break;
-        case '/':
-            divide.style.cssText = "border: 2px solid #666464";
-        break;
-        default:
-            x.style.cssText = "";
-            plus.style.cssText = "";
-            minus.style.cssText = "";
-            divide.style.cssText = "";
+            console.log('sieas')
+            x.style.cssText = 'border: 1px solid #7b7b7;';
         break;
     }
 }

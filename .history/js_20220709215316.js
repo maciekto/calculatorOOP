@@ -85,6 +85,7 @@ function signClicked(sign) {
         case 'AC':
             result_inner.innerHTML = '0';
             isNumberNew = true;
+            changeOperatorBorder();
         break;
 
         // COMMA
@@ -95,6 +96,7 @@ function signClicked(sign) {
 
 // Number and comma clicked
 function numberAndCommaClicked(number) {
+    changeOperatorBorder();
     if(number === ',') {
         // Read how much commas is in result
         if(commaLimitCheck(result_inner.innerHTML) === true) {
@@ -108,7 +110,7 @@ function numberAndCommaClicked(number) {
         } else {
             // Check if there is comma
             writeClickedNumber(number);
-            
+           
         }
     }
 }

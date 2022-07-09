@@ -79,7 +79,6 @@ function signClicked(sign) {
             isNumberNew = true;
             expression = []
             resizeResult();
-            changeOperatorBorder();
         break;
 
         case 'AC':
@@ -145,10 +144,10 @@ function changeOperatorBorder(operator) {
             divide.style.cssText = "border: 2px solid #666464";
         break;
         default:
-            x.style.cssText = "";
-            plus.style.cssText = "";
-            minus.style.cssText = "";
-            divide.style.cssText = "";
+            x.style.cssText = "border: 2px solid #666464";
+            plus.style.cssText = "border: 2px solid #666464";
+            minus.style.cssText = "border: 2px solid #666464";
+            divide.style.cssText = "border: 2px solid #666464";
         break;
     }
 }

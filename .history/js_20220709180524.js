@@ -34,52 +34,44 @@ var cashed_number;
 var operator = '';
 var expression = [];
 var isNumberNew = true;
-var isOperatorClicked = false;
 
 
-var signEvents = [x,plus, minus, divide, isEqual, AC];
-var numberEvents = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, lcomma]
-signEvents.forEach(element => {
-    element.addEventListener('click', () => signClicked(element.innerHTML));
-});
-numberEvents.forEach(element => {
-    element.addEventListener('click', () => numberAndCommaClicked(element.innerHTML));
+var events = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9,lcomma, x,plus, minus, divide, isEqual, AC];
+
+events.forEach(element => {
+    element.addEventListener('click', () => numberClicked(element.innerHTML));
 });
 
 
-function signClicked(sign) {
+// Function applied after click
+function numberClicked(sign) {
+    console.log(sign)
     switch(sign) {
+
         // MULTIPLY
         case 'x':
             casheNumber('*');
-            changeOperatorBorder('*');
         break;
 
         //ADD
         case '+':
             casheNumber('+');
-            changeOperatorBorder('+');
         break;
 
         //SUBSTRACT
         case '-':
             casheNumber('-');
-            changeOperatorBorder('-');
         break;
 
         //DIVIDE
         case '/':
             casheNumber('/');
-            changeOperatorBorder('/');
         break;
 
         // RESULT
         case '=':
-            result_inner.innerHTML = count();
-            isNumberNew = true;
-            expression = []
+            result_inner.innerHTML = count(result_inner.innerHTML);
             resizeResult();
-            changeOperatorBorder();
         break;
 
         case 'AC':
@@ -88,88 +80,73 @@ function signClicked(sign) {
         break;
 
         // COMMA
-        
-    }
-}
-
-
-// Number and comma clicked
-function numberAndCommaClicked(number) {
-    if(number === ',') {
-        // Read how much commas is in result
-        if(commaLimitCheck(result_inner.innerHTML) === true) {
-            writeClickedNumber(number)
-        }
-    } else {
-        if(isNumberNew == true) {
-            result_inner.innerHTML = number;
-            isNumberNew = false;
-
-        } else {
-            // Check if there is comma
-            writeClickedNumber(number);
+        case ',':
             
-        }
+            // Read how much commas is in result
+            commaLimitCheck(1, result_inner.innerHTML) === true ? writeClickedNumber(sign) : result_inner.innerHTML = result_inner.innerHTML;
+    
+            // Limit amount of comma to one
+            
+        break;
+
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+            if(isNumberNew == true) {
+                result_inner.innerHTML = sign;
+                isNumberNew = false;
+
+            } else {
+                // Check if there is comma
+                writeClickedNumber(sign);
+                
+            }
+        break;
     }
 }
 
 
 
-function count() {
-    const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
-    expression.push(transformedNumber);
-    console.log(expression)
-    expressionToString();
-
-    // Using mathjs library from https://mathjs.org/
-    const result = math.evaluate(expressionToString())
-
+function count(result) {
+    let newNumber;
+    newNumber = parseFloat(commaAndDotSwitcher('toDOT', result));
+    let endResult;
     
-
-    return commaAndDotSwitcher('toCOMMA',result.toString());
-    
-}
-
-function changeOperatorBorder(operator) {
     switch(operator) {
         case '*':
-            x.style.cssText = "border: 2px solid #666464";
+            endResult = cashed_number*newNumber
+            return commaAndDotSwitcher('toCOMMA',endResult.toString());
         break;
         case '+':
-            plus.style.cssText = "border: 2px solid #666464";
+            endResult = cashed_number+newNumber
+            return commaAndDotSwitcher('toCOMMA',endResult.toString());
         break;
         case '-':
-            minus.style.cssText = "border: 2px solid #666464";
+            endResult = cashed_number-newNumber
+            return commaAndDotSwitcher('toCOMMA',endResult.toString());
         break;
         case '/':
-            divide.style.cssText = "border: 2px solid #666464";
-        break;
-        default:
-            x.style.cssText = "";
-            plus.style.cssText = "";
-            minus.style.cssText = "";
-            divide.style.cssText = "";
+            endResult = cashed_number/newNumber
+            return commaAndDotSwitcher('toCOMMA',endResult.toString());
         break;
     }
 }
 
-function expressionToString() {
-    const stringExpression = expression.join(' ');
-    return stringExpression;
-}
-
-
 function casheNumber(selectedOperator) {
-    const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
-    expression.push(transformedNumber)
+    cashed_number = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
     isNumberNew = true;
-    expression.push(selectedOperator);
+    operator = selectedOperator;
 } 
 
-// Read how much commas is in the string
-// amount: INTEGER - how many commas can be in existing string
-// RETURNS true if there is less or equal commas to amount parameter
-commaLimitCheck = (string, amount = 1 ) => {
+// Limit amount of commas in string
+commaLimitCheck = (amount, string) => {
     let Check = string.split('');
     let commaCount = 0;
             
@@ -180,7 +157,8 @@ commaLimitCheck = (string, amount = 1 ) => {
         }
     });
 
-    if(commaCount < amount) {
+    const OLDresult = result_inner.innerHTML;
+    if(commaCount > amount) {
         return true;
     } else {
         return false;
@@ -192,6 +170,7 @@ commaLimitCheck = (string, amount = 1 ) => {
 // operation: toDOT or toCOMMA
 // RETURNS string with switched commas or dots
 commaAndDotSwitcher = (operation, string) => {
+    console.log(string)
     let Check = string.split('');
     let stringFromArray = '';
 
@@ -223,9 +202,9 @@ commaAndDotSwitcher = (operation, string) => {
 }
 
 // Write clicked number to the result inner div
-function writeClickedNumber(number) {
+function writeClickedNumber(sign) {
     const OLDresult = result_inner.innerHTML;
-    result_inner.innerHTML = OLDresult + number;
+    result_inner.innerHTML = OLDresult + sign;
     resizeResult()
 }
 
@@ -241,3 +220,79 @@ function resizeResult() {
     }
 }
 
+console.log(l1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// inputy liczb
+// inputy orange
+// input procent
+// input odwrotność
+// input reset
+
+// 1. po klinięciu liczba jest zapisywana jako aktywna, jeżeli jest dodana następna liczba jest dodawana do pierwszej w stringu
+
+// 2. Po kliniuęciu jakiegoś przycisku z orange jest dodawana flaga co będzie z tą liczbą robione
+
+// 3. Wprowadzenie następnej liczby
+
+// 4. Wynik
+
+
+// 5. Resetowanie liczby jako resetowanie zmiennej przechowującej wyrażenie

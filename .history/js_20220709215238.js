@@ -85,6 +85,7 @@ function signClicked(sign) {
         case 'AC':
             result_inner.innerHTML = '0';
             isNumberNew = true;
+            changeOperatorBorder();
         break;
 
         // COMMA
@@ -104,11 +105,12 @@ function numberAndCommaClicked(number) {
         if(isNumberNew == true) {
             result_inner.innerHTML = number;
             isNumberNew = false;
+            changeOperatorBorder();
 
         } else {
             // Check if there is comma
             writeClickedNumber(number);
-            
+            changeOperatorBorder();
         }
     }
 }
@@ -145,10 +147,10 @@ function changeOperatorBorder(operator) {
             divide.style.cssText = "border: 2px solid #666464";
         break;
         default:
-            x.style.cssText = "";
-            plus.style.cssText = "";
-            minus.style.cssText = "";
-            divide.style.cssText = "";
+            x.style.cssText = "border: 2px solid #666464";
+            plus.style.cssText = "border: 2px solid #666464";
+            minus.style.cssText = "border: 2px solid #666464";
+            divide.style.cssText = "border: 2px solid #666464";
         break;
     }
 }

@@ -79,7 +79,6 @@ function signClicked(sign) {
             isNumberNew = true;
             expression = []
             resizeResult();
-            changeOperatorBorder();
         break;
 
         case 'AC':
