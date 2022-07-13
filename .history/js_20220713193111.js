@@ -50,6 +50,7 @@ numberEvents.forEach(element => {
 
 
 function signClicked(sign) {
+    console.log(sign)
     switch(sign) {
         // MULTIPLY
         case 'x':
@@ -89,10 +90,6 @@ function signClicked(sign) {
             isNumberNew = true;
         break;
         
-        case '+/-':
-            
-            
-        break;
         // COMMA
         
     }
@@ -122,10 +119,7 @@ function numberAndCommaClicked(number) {
 
 
 function count() {
-    
     const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
-  
-    
     expression.push(transformedNumber);
     console.log(expression)
     expressionToString();

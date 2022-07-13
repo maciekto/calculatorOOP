@@ -28,7 +28,6 @@ const minus = Class('Calc__substraction');
 const divide = Class('Calc__divide');
 
 const AC = Class('Calc__reset');
-const opposite = Class('Calc__opposite');
 
 
 
@@ -39,7 +38,7 @@ var isNumberNew = true;
 var isOperatorClicked = false;
 
 
-var signEvents = [x,plus, minus, divide, isEqual, AC, opposite];
+var signEvents = [x,plus, minus, divide, isEqual, AC];
 var numberEvents = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, lcomma]
 signEvents.forEach(element => {
     element.addEventListener('click', () => signClicked(element.innerHTML));
@@ -50,6 +49,7 @@ numberEvents.forEach(element => {
 
 
 function signClicked(sign) {
+    console.log(sign)
     switch(sign) {
         // MULTIPLY
         case 'x':
@@ -89,10 +89,7 @@ function signClicked(sign) {
             isNumberNew = true;
         break;
         
-        case '+/-':
-            
-            
-        break;
+
         // COMMA
         
     }
@@ -122,10 +119,7 @@ function numberAndCommaClicked(number) {
 
 
 function count() {
-    
     const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
-  
-    
     expression.push(transformedNumber);
     console.log(expression)
     expressionToString();

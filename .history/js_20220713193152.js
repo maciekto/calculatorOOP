@@ -90,8 +90,7 @@ function signClicked(sign) {
         break;
         
         case '+/-':
-            
-            
+            console.log('clicked')
         break;
         // COMMA
         
@@ -122,10 +121,7 @@ function numberAndCommaClicked(number) {
 
 
 function count() {
-    
     const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
-  
-    
     expression.push(transformedNumber);
     console.log(expression)
     expressionToString();

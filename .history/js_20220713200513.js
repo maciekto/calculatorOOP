@@ -91,7 +91,11 @@ function signClicked(sign) {
         
         case '+/-':
             
-            
+            signClicked('x');
+            result_inner.innerHTML = count('-1')
+            isNumberNew = true;
+            expression = []
+            changeOperatorBorder();
         break;
         // COMMA
         
