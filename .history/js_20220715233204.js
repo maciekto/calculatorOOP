@@ -36,9 +36,6 @@ var expression = [];
 var isNumberNew = true;
 var isOperatorClicked = false;
 
-var style = window.getComputedStyle(result, null).getPropertyValue('font-size');
-var fontSizee =  parseFloat(style);
-
 var allEvents = [x,plus, minus, divide, isEqual, AC, opposite, percentages,l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, lcomma]
 
 allEvents.forEach(element => {
@@ -50,10 +47,6 @@ document.addEventListener('keydown', select);
 
 function select(e) {
     
-    if(result_inner.innerHTML.length > 100) {
-        result_inner.innerHTML = '0';
-        result.style.fontSize = `${fontSizee}px`
-    }
     let selectedField;
 
     // detect if event is from keyboard or click
@@ -114,7 +107,9 @@ function select(e) {
             result_inner.innerHTML = '0';
             isNumberNew = true;
 
-            result.style.fontSize = `${fontSizee}px`;
+            var style = window.getComputedStyle(result, null).getPropertyValue('font-size');
+            var fontSizee =  parseFloat(style);
+            result.style.fontSize = `80px`;
         break;
         case 'AC':
             AC.innerHTML = 'AC';
@@ -328,15 +323,18 @@ function writeClickedNumber(number) {
 }
 
 // Resize inner result div dependent of how much text is inside
-function resizeResult() {
-    if(result_inner.clientWidth > result.clientWidth) {
+// function resizeResult() {
+//     if(result_inner.clientWidth > result.clientWidth) {
 
-        while(result_inner.clientWidth>result.clientWidth) {
-            const style = window.getComputedStyle(result, null).getPropertyValue('font-size');
-            const fontSizee =  parseFloat(style);
-            result.style.fontSize = (fontSizee - 1) +'px';
-            
-        }
-    }
-}
+//         while(result_inner.clientWidth>result.clientWidth) {
+//             var style = window.getComputedStyle(result, null).getPropertyValue('font-size');
+//             var fontSizee =  parseFloat(style);
+//             if(fontSizee > 30) {
+//                 result.style.fontSize = (fontSizee - 1) +'px';
+//             } else {
+//                 break;
+//             }
+//         }
+//     }
+// }
 

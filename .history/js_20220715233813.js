@@ -35,7 +35,6 @@ var operator = '';
 var expression = [];
 var isNumberNew = true;
 var isOperatorClicked = false;
-
 var style = window.getComputedStyle(result, null).getPropertyValue('font-size');
 var fontSizee =  parseFloat(style);
 
@@ -114,7 +113,7 @@ function select(e) {
             result_inner.innerHTML = '0';
             isNumberNew = true;
 
-            result.style.fontSize = `${fontSizee}px`;
+            result.style.fontSize = `80px`;
         break;
         case 'AC':
             AC.innerHTML = 'AC';

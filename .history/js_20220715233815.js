@@ -114,7 +114,7 @@ function select(e) {
             result_inner.innerHTML = '0';
             isNumberNew = true;
 
-            result.style.fontSize = `${fontSizee}px`;
+            result.style.fontSize = `80px`;
         break;
         case 'AC':
             AC.innerHTML = 'AC';
