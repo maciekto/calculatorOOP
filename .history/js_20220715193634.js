@@ -26,7 +26,6 @@ const x = Class('Calc__multiply');
 const plus = Class('Calc__addition');
 const minus = Class('Calc__substraction');
 const divide = Class('Calc__divide');
-const percentages = Class('Calc__percentages');
 
 const AC = Class('Calc__reset');
 const opposite = Class('Calc__opposite');
@@ -40,7 +39,7 @@ var isNumberNew = true;
 var isOperatorClicked = false;
 
 
-var signEvents = [x,plus, minus, divide, isEqual, AC, opposite, percentages];
+var signEvents = [x,plus, minus, divide, isEqual, AC, opposite];
 var numberEvents = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, lcomma]
 signEvents.forEach(element => {
     element.addEventListener('click', () => signClicked(element.innerHTML));
@@ -143,8 +142,7 @@ function signClicked(sign) {
             } else {
                 
                 if(isOperatorClicked === false) {
-                    const toString = transformedNumber3 / 100;
-                    result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', toString.toString());
+                    result_inner.innerHTML = `-${result_inner.innerHTML}`;
                 } else {
                     expression[expression.length - 2] = expression[expression.length - 2]/100;
                     let numberModified = expression[expression.length - 2];

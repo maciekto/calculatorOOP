@@ -143,8 +143,7 @@ function signClicked(sign) {
             } else {
                 
                 if(isOperatorClicked === false) {
-                    const toString = transformedNumber3 / 100;
-                    result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', toString.toString());
+                    result_inner.innerHTML = `-${result_inner.innerHTML}`;
                 } else {
                     expression[expression.length - 2] = expression[expression.length - 2]/100;
                     let numberModified = expression[expression.length - 2];

@@ -26,7 +26,6 @@ const x = Class('Calc__multiply');
 const plus = Class('Calc__addition');
 const minus = Class('Calc__substraction');
 const divide = Class('Calc__divide');
-const percentages = Class('Calc__percentages');
 
 const AC = Class('Calc__reset');
 const opposite = Class('Calc__opposite');
@@ -40,7 +39,7 @@ var isNumberNew = true;
 var isOperatorClicked = false;
 
 
-var signEvents = [x,plus, minus, divide, isEqual, AC, opposite, percentages];
+var signEvents = [x,plus, minus, divide, isEqual, AC, opposite];
 var numberEvents = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, lcomma]
 signEvents.forEach(element => {
     element.addEventListener('click', () => signClicked(element.innerHTML));
@@ -50,9 +49,7 @@ numberEvents.forEach(element => {
 });
 
 
-
 function signClicked(sign) {
-    AC.innerHTML = 'C';
     switch(sign) {
         // MULTIPLY
         case 'x':
@@ -97,23 +94,10 @@ function signClicked(sign) {
             changeOperatorBorder();
         break;
 
-        // Reset
-        case 'C':
-            AC.innerHTML = 'AC';
-            result_inner.innerHTML = '0';
-            isNumberNew = true;
-        break;
-
         case 'AC':
-            AC.innerHTML = 'AC';
             result_inner.innerHTML = '0';
             isNumberNew = true;
-
-            expression = [];
-            isOperatorClicked = false;
-            changeOperatorBorder();
         break;
-        
         
         case '+/-':
             const transformedNumber2 = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
@@ -133,25 +117,6 @@ function signClicked(sign) {
                 }
             }
         break;
-            
-        case '%':
-            const transformedNumber3 = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
-
-            if(transformedNumber3 <= 0) {
-                const toString = transformedNumber3 / 100;
-                result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', toString.toString());
-            } else {
-                
-                if(isOperatorClicked === false) {
-                    const toString = transformedNumber3 / 100;
-                    result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', toString.toString());
-                } else {
-                    expression[expression.length - 2] = expression[expression.length - 2]/100;
-                    let numberModified = expression[expression.length - 2];
-                    result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', numberModified.toString());
-                }
-            }
-        break;
         // COMMA
         
     }
@@ -160,7 +125,6 @@ function signClicked(sign) {
 
 // Number and comma clicked
 function numberAndCommaClicked(number) {
-    AC.innerHTML = 'C';
     if(number === ',') {
         // Read how much commas is in result
         if(commaLimitCheck(result_inner.innerHTML) === true) {
@@ -234,8 +198,6 @@ function casheNumber(selectedOperator) {
     }
     
 } 
-
-
 
 // Read how much commas is in the string
 // amount: INTEGER - how many commas can be in existing string

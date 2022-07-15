@@ -144,7 +144,7 @@ function signClicked(sign) {
                 
                 if(isOperatorClicked === false) {
                     const toString = transformedNumber3 / 100;
-                    result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', toString.toString());
+                result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', toString.toString());
                 } else {
                     expression[expression.length - 2] = expression[expression.length - 2]/100;
                     let numberModified = expression[expression.length - 2];
