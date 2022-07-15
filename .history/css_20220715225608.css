@@ -34,7 +34,6 @@ main {
     ;
     grid-gap: 1px;
     font-size: 4vw;
-    border-radius: 2vw;
 }
 .Calc div {
     display: grid;
@@ -48,7 +47,6 @@ main {
     font-size: 10vw;
     display: flex;
     overflow-x: scroll;
-    border-radius: 2vw 2vw 0 0;
 }
 .Calc__result__inner {
     padding: 1vw 4vw;
@@ -84,12 +82,7 @@ main {
 .Calc__isequal {
     background: #f2a33c !important;
 }
-.Calc__0 {
-    border-radius: 0 0 0 2vw; 
-}
-.Calc__isequal {
-    border-radius: 0 0 2vw 0; 
-}
+
 
 .Calc__0 {
     grid-area: zero;
@@ -98,16 +91,9 @@ main {
 @media (min-width: 800px) {
     .Calc {
         font-size: 32px;
-        border-radius: 20px;
+        border-radius: 20px 20px 0 0;
     }
     .Calc__result {
         font-size: 80px;
-        border-radius: 20px 20px 0 0;
-    }
-    .Calc__0 {
-        border-radius: 0 0 0 20px; 
-    }
-    .Calc__isequal {
-        border-radius: 0 0 20px 0; 
     }
 }

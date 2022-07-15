@@ -235,14 +235,9 @@ function changeOperatorBorder(operator) {
 // add number to the expression with corresponding operator which was selected
 function casheNumber(selectedOperator) {
 
-    // Doing when user already selected operator and want to change to other one
-    // example: from '*' to '-'
     if(isOperatorClicked === true) {
         expression[expression.length - 1] = selectedOperator;
-    } 
-
-    // add number and operator to expression
-    else {
+    } else {
         const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML))
         expression.push(transformedNumber);
         isNumberNew = true;

@@ -191,22 +191,14 @@ function select(e) {
         
     }
 }
-
-
-// Return result as string type with commas to use in result_inner.innerHTML
 function count() {
     // Using mathjs library from https://mathjs.org/
-    const result = math.evaluate(
-
-        // Convert expression from array to string
-        expression.join('')
-    )
-    // Return result in string type with commas instead of dots
+    const result = math.evaluate(expression.join(' '))
     return commaAndDotSwitcher('toCOMMA',result.toString());
     
 }
 
-// Make bigger border of selected operator
+// Make bigger border of selected operator.
 // If argument is empty clears all bolded borders
 function changeOperatorBorder(operator) {
     clearBorders();
@@ -232,20 +224,18 @@ function changeOperatorBorder(operator) {
     }
 }
 
-// add number to the expression with corresponding operator which was selected
-function casheNumber(selectedOperator) {
 
-    // Doing when user already selected operator and want to change to other one
-    // example: from '*' to '-'
+function casheNumber(selectedOperator) {
+    console.log(expression)
     if(isOperatorClicked === true) {
         expression[expression.length - 1] = selectedOperator;
-    } 
-
-    // add number and operator to expression
-    else {
-        const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML))
-        expression.push(transformedNumber);
+        console.log(expression)
+    } else {
+        const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
+        console.log(expression)
+        expression.push(transformedNumber)
         isNumberNew = true;
+        console.log(expression)
         expression.push(selectedOperator);
     }
     

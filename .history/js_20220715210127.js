@@ -20,12 +20,14 @@ const l7 = Class('Calc__7');
 const l8 = Class('Calc__8');
 const l9 = Class('Calc__9');
 const lcomma = Class('Calc__comma');
+
 const isEqual = Class('Calc__isequal');
 const x = Class('Calc__multiply');
 const plus = Class('Calc__addition');
 const minus = Class('Calc__substraction');
 const divide = Class('Calc__divide');
 const percentages = Class('Calc__percentages');
+
 const AC = Class('Calc__reset');
 const opposite = Class('Calc__opposite');
 
@@ -61,6 +63,7 @@ function select(e) {
         // MULTIPLY
         case 'x':
         case '*':
+            
             casheNumber('*');
             changeOperatorBorder('*');
             isOperatorClicked = true;
@@ -68,6 +71,7 @@ function select(e) {
 
         //ADD
         case '+':
+            
             casheNumber('+');
             changeOperatorBorder('+');
             isOperatorClicked = true;
@@ -75,6 +79,7 @@ function select(e) {
 
         //SUBSTRACT
         case '-':
+            
             casheNumber('-');
             changeOperatorBorder('-');
             isOperatorClicked = true;
@@ -82,6 +87,7 @@ function select(e) {
 
         //DIVIDE
         case '/':
+            
             casheNumber('/');
             changeOperatorBorder('/');
             isOperatorClicked = true;
@@ -105,6 +111,7 @@ function select(e) {
             result_inner.innerHTML = '0';
             isNumberNew = true;
         break;
+
         case 'AC':
             AC.innerHTML = 'AC';
             result_inner.innerHTML = '0';
@@ -114,6 +121,7 @@ function select(e) {
             isOperatorClicked = false;
             changeOperatorBorder();
         break;
+        
         
         case '+/-':
             const transformedNumber2 = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
@@ -133,8 +141,7 @@ function select(e) {
                 }
             }
         break;
-          
-        // PERCENTAGES
+            
         case '%':
             const transformedNumber3 = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
 
@@ -153,8 +160,6 @@ function select(e) {
                 }
             }
         break;
-        
-        // COMMAS
         case ',':
             // Read how much commas is in result
             if(commaLimitCheck(result_inner.innerHTML) === true) {
@@ -182,7 +187,6 @@ function select(e) {
                 
             }
         break;
-
         case 'Backspace':
             const stringFromArray = result_inner.innerHTML.split('');
             stringFromArray.pop()
@@ -191,23 +195,13 @@ function select(e) {
         
     }
 }
-
-
-// Return result as string type with commas to use in result_inner.innerHTML
 function count() {
     // Using mathjs library from https://mathjs.org/
-    const result = math.evaluate(
-
-        // Convert expression from array to string
-        expression.join('')
-    )
-    // Return result in string type with commas instead of dots
+    const result = math.evaluate(expressionToString())
     return commaAndDotSwitcher('toCOMMA',result.toString());
     
 }
 
-// Make bigger border of selected operator
-// If argument is empty clears all bolded borders
 function changeOperatorBorder(operator) {
     clearBorders();
     switch(operator) {
@@ -232,20 +226,23 @@ function changeOperatorBorder(operator) {
     }
 }
 
-// add number to the expression with corresponding operator which was selected
-function casheNumber(selectedOperator) {
+function expressionToString() {
+    const stringExpression = expression.join(' ');
+    return stringExpression;
+}
 
-    // Doing when user already selected operator and want to change to other one
-    // example: from '*' to '-'
+
+function casheNumber(selectedOperator) {
+    console.log(expression)
     if(isOperatorClicked === true) {
         expression[expression.length - 1] = selectedOperator;
-    } 
-
-    // add number and operator to expression
-    else {
-        const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML))
-        expression.push(transformedNumber);
+        console.log(expression)
+    } else {
+        const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
+        console.log(expression)
+        expression.push(transformedNumber)
         isNumberNew = true;
+        console.log(expression)
         expression.push(selectedOperator);
     }
     
