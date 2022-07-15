@@ -51,14 +51,11 @@ document.addEventListener('keydown', select);
 function select(e) {
     AC.innerHTML = 'C';
     let selectedField;
-
-    // detect if event is from keyboard or click
     if(e.key === undefined) {
         selectedField = e.target.innerHTML
     } else {
         selectedField = e.key;
     }
-
 
     switch(selectedField) {
         // MULTIPLY
@@ -188,11 +185,7 @@ function select(e) {
                 
             }
         break;
-        case 'Backspace':
-            const stringFromArray = result_inner.innerHTML.split('');
-            stringFromArray.pop()
-            result_inner.innerHTML = stringFromArray.join("");
-        break;
+        
         
     }
 }

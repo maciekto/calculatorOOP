@@ -44,26 +44,28 @@ var allEvents = [x,plus, minus, divide, isEqual, AC, opposite, percentages,l0, l
 allEvents.forEach(element => {
     element.addEventListener('click', select);
 });
-
-document.addEventListener('keydown', select);
-
+// var signEvents = [x,plus, minus, divide, isEqual, AC, opposite, percentages];
+// var numberEvents = [l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, lcomma]
+// signEvents.forEach(element => {
+//     element.addEventListener('click', () => signClicked(element.innerHTML));
+//     element.addEventListener('click', () => signClicked(element.innerHTML));
+// });
+// numberEvents.forEach(element => {
+//     element.addEventListener('click', () => numberAndCommaClicked(element.innerHTML));
+//     element.addEventListener('click', xtest);
+    
+// });
+// document.addEventListener('keydown', KEYnumberAndCommaClicked);
+function xtest(e) {
+    console.log(e.target.innerHTML)
+}
 
 function select(e) {
     AC.innerHTML = 'C';
-    let selectedField;
-
-    // detect if event is from keyboard or click
-    if(e.key === undefined) {
-        selectedField = e.target.innerHTML
-    } else {
-        selectedField = e.key;
-    }
-
-
-    switch(selectedField) {
+    
+    switch(e.target.innerHTML) {
         // MULTIPLY
         case 'x':
-        case '*':
             
             casheNumber('*');
             changeOperatorBorder('*');
@@ -96,7 +98,6 @@ function select(e) {
 
         // RESULT
         case '=':
-        case 'Enter':
             const transformedNumber = parseFloat(commaAndDotSwitcher('toDOT', result_inner.innerHTML));
             expression.push(transformedNumber);
             result_inner.innerHTML = count();
@@ -164,7 +165,7 @@ function select(e) {
         case ',':
             // Read how much commas is in result
             if(commaLimitCheck(result_inner.innerHTML) === true) {
-                writeClickedNumber(selectedField)
+                writeClickedNumber(number)
             }
         break;
         case '0':
@@ -178,24 +179,48 @@ function select(e) {
         case '8':
         case '9':
             if(isNumberNew == true) {
-                result_inner.innerHTML = selectedField;
+                result_inner.innerHTML = number;
                 isNumberNew = false;
                 isOperatorClicked = false;
     
             } else {
                 // Check if there is comma
-                writeClickedNumber(selectedField);
+                writeClickedNumber(number);
                 
             }
         break;
-        case 'Backspace':
-            const stringFromArray = result_inner.innerHTML.split('');
-            stringFromArray.pop()
-            result_inner.innerHTML = stringFromArray.join("");
-        break;
+        
         
     }
 }
+
+
+
+
+// Number and comma clicked
+function numberAndCommaClicked(number) {
+    AC.innerHTML = 'C';
+    if(number === ',') {
+        
+    } else {
+        
+    }
+}
+// function KEYnumberAndCommaClicked(e) {
+//     const number = e.key;
+//     if(isNumberNew == true) {
+//         result_inner.innerHTML = number;
+//         isNumberNew = false;
+//         isOperatorClicked = false;
+
+//     } else {
+//         // Check if there is comma
+//         writeClickedNumber(number);
+//     }
+// }
+
+
+
 function count() {
     // Using mathjs library from https://mathjs.org/
     const result = math.evaluate(expressionToString())

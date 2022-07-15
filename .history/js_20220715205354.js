@@ -51,15 +51,12 @@ document.addEventListener('keydown', select);
 function select(e) {
     AC.innerHTML = 'C';
     let selectedField;
-
-    // detect if event is from keyboard or click
     if(e.key === undefined) {
         selectedField = e.target.innerHTML
     } else {
         selectedField = e.key;
     }
-
-
+    console.log(e.key)
     switch(selectedField) {
         // MULTIPLY
         case 'x':
