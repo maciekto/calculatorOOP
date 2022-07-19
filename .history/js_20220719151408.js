@@ -165,7 +165,6 @@ function select(e) {
                     result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', numberModified.toString());
                 }
             }
-            resizeResult();
         break;
         
         // COMMAS

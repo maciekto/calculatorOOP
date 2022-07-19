@@ -103,7 +103,6 @@ function select(e) {
             result_inner.innerHTML = count();
             isNumberNew = true;
             expression = []
-            result.style.fontSize = `${fontSizee}px`;
             resizeResult();
             changeOperatorBorder();
         break;
@@ -144,7 +143,6 @@ function select(e) {
                     result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', numberModified.toString());
                 }
             }
-            resizeResult();
         break;
           
         // PERCENTAGES
@@ -165,7 +163,6 @@ function select(e) {
                     result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', numberModified.toString());
                 }
             }
-            resizeResult();
         break;
         
         // COMMAS
@@ -186,14 +183,12 @@ function select(e) {
         case '8':
         case '9':
             if(isNumberNew == true) {
-                result.style.fontSize = `${fontSizee}px`;
                 result_inner.innerHTML = selectedField;
                 isNumberNew = false;
                 isOperatorClicked = false;
     
             } else {
                 // Check if there is comma
-                result.style.fontSize = `${fontSizee}px`;
                 writeClickedNumber(selectedField);
                 
             }
@@ -330,7 +325,7 @@ function writeClickedNumber(number) {
     
     const OLDresult = result_inner.innerHTML;
     result_inner.innerHTML = OLDresult + number;
-    
+    result.style.fontSize = `${fontSizee}px`;
     resizeResult()
     
 }

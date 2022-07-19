@@ -4,7 +4,6 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 }
 
 main {
@@ -96,13 +95,13 @@ main {
     grid-area: zero;
 }
 @media (max-width: 800px) {
-    main {
+    .Calc {
         margin-top: 40vw;
-    place-items: start center;
+        place-items: start center;
     }
 }
 @media (min-width: 800px) {
-    .Calc {
+    main {
         font-size: 32px;
         border-radius: 20px;
     }

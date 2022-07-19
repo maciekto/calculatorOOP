@@ -103,7 +103,6 @@ function select(e) {
             result_inner.innerHTML = count();
             isNumberNew = true;
             expression = []
-            result.style.fontSize = `${fontSizee}px`;
             resizeResult();
             changeOperatorBorder();
         break;
@@ -144,7 +143,6 @@ function select(e) {
                     result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', numberModified.toString());
                 }
             }
-            resizeResult();
         break;
           
         // PERCENTAGES
@@ -165,7 +163,6 @@ function select(e) {
                     result_inner.innerHTML = commaAndDotSwitcher('toCOMMA', numberModified.toString());
                 }
             }
-            resizeResult();
         break;
         
         // COMMAS
